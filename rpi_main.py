@@ -11,6 +11,7 @@ Cmac = "5C:17:CF:89:44:D7".lower()
 Nmac = "80:B0:3D:0D:7E:93".lower()
 
 def main():
+ 
     # for i in range(55):
     #     search_mac("10.0.0."+str(i))
     start_time = time.time()    
@@ -30,12 +31,14 @@ def main():
         n_list.append(list[1])
         c_list.append(list[2])
         k_list.append(list[3])
-    with open('/home/pi/Documents/projects/projects/whosHome/tmp.txt', 'a')as f:
+    # with open('/home/pi/Documents/projects/projects/whosHome/tmp.txt', 'a')as f:
+    with open('C:/Users/david/Documents/whoShome/tmp.txt', 'a') as f:
         t = time.localtime()
         current_time = time.strftime("%H:%M:%S", t)
         f.write(current_time+'\n')
         if any(d_list):
             f.write('david is here\n')
+        
         if any(k_list):
             f.write('kajetan is here\n')
         if any(n_list):
@@ -52,6 +55,7 @@ def get_mac(ip):
     return answered_list[0][1].hwsrc 
 
 def scan(ip):
+    print(ip)
     arp_request = ARP(pdst=ip)
     broadcast = Ether(dst="ff:ff:ff:ff:ff:ff")
     arp_request_broadcast = broadcast/arp_request
